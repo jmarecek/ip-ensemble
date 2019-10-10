@@ -1,13 +1,34 @@
-# this program converts tempeval-2 format all tlink relations to timegraph 
-# conventions: 
-## parent = left side, child = right side 
-## x < y, x's parent NIL, child y; y's parent x, child NIL
+"""
+Converts tempeval-2 format all tlink relations to timegraph 
+conventions: 
+ parent = left side, child = right side 
+ x < y, x's parent NIL, child y; y's parent x, child NIL
 
-### changes 
-## October 24: 
-# change the main function from tempeval_to_timegraph_func to create_timegraph_from_weight_sorted_relations. earlier, we were finding the neighbours to travers. now we are reading the sorted list to traverse. 
-# fixed a bug in the interval_rel_X_Y function, were missing some entities (check return 'semi-true' instances 
-# added closure violation (tg.violated_relations) and remove from reduce graph list (tg.remove_from_reduce), removing same relations (tg.nonredundant), tg.final_relations = tg.nonredundant - tg.remove_from_reduce - tg.violated_relations 
+changes on October 24: 
+-- change the main function from tempeval_to_timegraph_func to create_timegraph_from_weight_sorted_relations. earlier, we were finding the neighbours to travers. now we are reading the sorted list to traverse. 
+-- fixed a bug in the interval_rel_X_Y function, were missing some entities (check return 'semi-true' instances 
+-- added closure violation (tg.violated_relations) and remove from reduce graph list (tg.remove_from_reduce), removing same relations (tg.nonredundant), tg.final_relations = tg.nonredundant - tg.remove_from_reduce - tg.violated_relations 
+
+This code is licensed under the Apache License, Version 2.0. You may
+obtain a copy of this license in the LICENSE file in the root 
+directory of this source tree or at 
+http://www.apache.org/licenses/LICENSE-2.0.
+Any modifications or derivative works of this code must retain this
+copyright notice, and modified files need to carry a notice 
+indicating that they have been altered from the originals.
+
+If you use this code, please cite our paper:
+@article{Kerr2020,
+  author    = {Catherine Kerr and Terri Hoare and Paula Carroll and Jakub Marecek},
+  title     = {Integer-Programming Ensemble of Temporal-Relations Classifiers},
+  journal   = {Data Mining and Knowledge Discovery},
+  volume    = {to appear},
+  year      = {2020},
+  url       = {http://arxiv.org/abs/1412.1866},
+  archivePrefix = {arXiv},
+  eprint    = {1412.1866},
+}
+"""
 
 import sys
 import re
