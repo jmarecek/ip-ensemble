@@ -1,10 +1,32 @@
-# Calculates RecallX, PrecisionX and F1X scores for classifiers/ensemble
-# Input parameters
-# "ref="dirname         name of directory with benchmark data - default Platinum
-# "sys="dirname         name of directory with classifier/ensemble data - default RESULTS
-# "file="file*          partial or full name of files to be compared - default *.tml
-# "outfile="filename    name of file with detailed results - default results.csv
-# "summary="filename    name of file with summary results - default summary.csv
+"""
+Calculates RecallX, PrecisionX and F1X scores for classifiers/ensemble
+Input parameters
+"ref="dirname         name of directory with benchmark data - default Platinum
+"sys="dirname         name of directory with classifier/ensemble data - default RESULTS
+"file="file*          partial or full name of files to be compared - default *.tml
+"outfile="filename    name of file with detailed results - default results.csv
+"summary="filename    name of file with summary results - default summary.csv
+
+This code is licensed under the Apache License, Version 2.0. You may
+obtain a copy of this license in the LICENSE file in the root 
+directory of this source tree or at 
+http://www.apache.org/licenses/LICENSE-2.0.
+Any modifications or derivative works of this code must retain this
+copyright notice, and modified files need to carry a notice 
+indicating that they have been altered from the originals.
+
+If you use this code, please cite our paper:
+@article{Kerr2020,
+  author    = {Catherine Kerr and Terri Hoare and Paula Carroll and Jakub Marecek},
+  title     = {Integer-Programming Ensemble of Temporal-Relations Classifiers},
+  journal   = {Data Mining and Knowledge Discovery},
+  volume    = {to appear},
+  year      = {2020},
+  url       = {http://arxiv.org/abs/1412.1866},
+  archivePrefix = {arXiv},
+  eprint    = {1412.1866},
+}
+"""
 
 from classifier import Classifier
 import glob

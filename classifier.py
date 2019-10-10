@@ -1,6 +1,28 @@
-# Parse tml files in Tempeval-13 challenge
-# Map events and timex tags to global identifiers
-# Calculate probabilities of classes using weighting formulas
+"""
+Parses tml files in Tempeval-13 challenge
+Maps events and timex tags to global identifiers
+Calculates probabilities of classes using weighting formulas
+
+This code is licensed under the Apache License, Version 2.0. You may
+obtain a copy of this license in the LICENSE file in the root 
+directory of this source tree or at 
+http://www.apache.org/licenses/LICENSE-2.0.
+Any modifications or derivative works of this code must retain this
+copyright notice, and modified files need to carry a notice 
+indicating that they have been altered from the originals.
+
+If you use this code, please cite our paper:
+@article{Kerr2020,
+  author    = {Catherine Kerr and Terri Hoare and Paula Carroll and Jakub Marecek},
+  title     = {Integer-Programming Ensemble of Temporal-Relations Classifiers},
+  journal   = {Data Mining and Knowledge Discovery},
+  volume    = {to appear},
+  year      = {2020},
+  url       = {http://arxiv.org/abs/1412.1866},
+  archivePrefix = {arXiv},
+  eprint    = {1412.1866},
+}
+"""
 
 from xml.etree.ElementTree import parse
 from bs4 import BeautifulSoup

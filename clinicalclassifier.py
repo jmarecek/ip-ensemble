@@ -1,10 +1,26 @@
+"""
+Parse file across all classfiers and combine into single dataframe
 
-# coding: utf-8
+This code is licensed under the Apache License, Version 2.0. You may
+obtain a copy of this license in the LICENSE file in the root 
+directory of this source tree or at 
+http://www.apache.org/licenses/LICENSE-2.0.
+Any modifications or derivative works of this code must retain this
+copyright notice, and modified files need to carry a notice 
+indicating that they have been altered from the originals.
 
-# # Parse file across all classfiers and combine into single dataframe
-# 
-
-# In[1]:
+If you use this code, please cite our paper:
+@article{Kerr2020,
+  author    = {Catherine Kerr and Terri Hoare and Paula Carroll and Jakub Marecek},
+  title     = {Integer-Programming Ensemble of Temporal-Relations Classifiers},
+  journal   = {Data Mining and Knowledge Discovery},
+  volume    = {to appear},
+  year      = {2020},
+  url       = {http://arxiv.org/abs/1412.1866},
+  archivePrefix = {arXiv},
+  eprint    = {1412.1866},
+}
+"""
 
 from __future__ import division
 #from __future__ import print
