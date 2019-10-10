@@ -4,16 +4,16 @@ The extraction and understanding of temporal events and their relations are majo
 
 If you use the code, please also cite our paper: 
 
-@article{Kerr2020,
-  author    = {Catherine Kerr and Terri Hoare and Paula Carroll and Jakub Marecek},
-  title     = {Integer-Programming Ensemble of Temporal-Relations Classifiers},
-  journal   = {Data Mining and Knowledge Discovery},
-  volume    = {to appear},
-  year      = {2020},
-  url       = {http://arxiv.org/abs/1412.1866},
-  archivePrefix = {arXiv},
-  eprint    = {1412.1866},
-}
+      @article{Kerr2020,
+        author    = {Catherine Kerr and Terri Hoare and Paula Carroll and Jakub Marecek},
+        title     = {Integer-Programming Ensemble of Temporal-Relations Classifiers},
+        journal   = {Data Mining and Knowledge Discovery},
+        volume    = {to appear},
+        year      = {2020},
+        url       = {http://arxiv.org/abs/1412.1866},
+        archivePrefix = {arXiv},
+        eprint    = {1412.1866},
+      }
 
 The data we trained on are available from the original authors. 
 
@@ -55,7 +55,7 @@ To recreate results from the paper, run
 To learn about the functionality of the code, see: 
 
     optimizer.py
-	clinicaloptimizer.py
+    clinicaloptimizer.py
 
 To read about the pre-processing of the data, see:
 
