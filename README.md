@@ -1,5 +1,9 @@
 # Integer-Programming Ensemble of Temporal-Relations Classifiers
 
+_This project originated in UCD Michael Smurfit Graduate Business School in 2014 for an MSc in Business Analytics undertaken by Terri Hoare and Catherine Kerr. Supervisors: Dr Paula Carroll (UCD School of Business) and Dr Jakub Mareček (IBM Research)._
+
+_The code was written by Catherine Kerr in collaboration with Dr. Jakub Mareček._
+
 The extraction and understanding of temporal events and their relations are major challenges in natural language processing. Processing text on a sentence-by-sentence or expression-by-expression basis often fails, in part due to the challenge of capturing the global consistency of the text. We present an ensemble method, which reconciles the outputs of multiple classifiers of temporal expressions across the text using integer programming. Computational experiments show that the ensemble improves upon the best individual results from two recent challenges, SemEval-2013 TempEval-3 (Temporal Annotation) and SemEval-2016 Task 12 (Clinical TempEval).
 
 If you use the code, please also cite our paper: 
