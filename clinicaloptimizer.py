@@ -186,7 +186,7 @@ def main(df_in):
     global numConstraints
     numConstraints = 0
     df = df_in
-    opt = SolverFactory('cbc')
+    opt = SolverFactory('cplex')
     model = ConcreteModel()
     model.relTypes = Set(initialize=reltypes, ordered=True);
     model.mapTuple = Param(model.relTypes, initialize=maptuple)
@@ -203,29 +203,17 @@ def main(df_in):
     model.Transitivity = Constraint(model.Connected_Arcs, model.relTypes, model.relTypes, rule=Transitivity_rule)
     print("Number of constraints: ", numConstraints)
     
-#    print "Optimising model"
-    # Create a model instance and optimize
-    instance = model.create()
-    results = opt.solve(instance)
-#    results = opt.solve(instance, tee=True)
-#    print results
-
-    # load the results of the optimisation into a dictionary
-    instance.load(results)
+    results = opt.solve(model)
+    rDict = {}
+    for (arcFrom, arcTo, index) in model.x.keys():
+        arc = (arcFrom, arcTo)
+        if not rDict.has_key( arc ): rDict[arc] = []
+        rDict[arc].append(index)
     row = 0
     df_result = pd.DataFrame(columns=('source', 'target', 'relation'))
-    for xVar in instance.active_components(Var):
-        varobject = getattr(instance, xVar)
-        #rDict = {}
-        relTuple = ()
-        for index in varobject:
-            relTuple += (varobject[index].value,)
-            # build the values tuple and
-            # add to dictionary when tuple is complete
-            if index[2] == len(reltypes) - 1 :
-                df_result.loc[row] = [index[0], index[1], relTuple]
-                row += 1
-                relTuple = ()
+    for (arcFrom, arcTo) in rDict.keys():
+        df_result.loc[row] = [arcFrom, arcTo, rDict[(arcFrom, arcTo)]]
+        row += 1
     df_result.set_index(['source', 'target'], inplace=True)
     return df_result
 

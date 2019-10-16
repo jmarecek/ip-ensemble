@@ -32,13 +32,15 @@ def main(args):
 #    classDir = "CLASSIFIER_"
     classFile = "*.tml"
     weight  = "1"
-    weights = ["1","2","3","4","5","6","7"]   # '1' = same weight across classifiers
-                                              # '2' = F1 score of each classifier
-                                              # '3' = Precision score of each classifier
-                                              # '4' = Recall score of each classifier
-                                              # '5' = new F1 score of each classifier
-                                              # '6' = new Precision score of each classifier
-                                              # '7' = new Recall score of each classifier
+    convexifying = 0.5
+    weights = ["1","2","3","4","5","6","7","8"]# '1' = same weight across classifiers
+                                               # '2' = F1 score of each classifier
+                                               # '3' = Precision score of each classifier
+                                               # '4' = Recall score of each classifier
+                                               # '5' = new F1 score of each classifier
+                                               # '6' = new Precision score of each classifier
+                                               # '7' = new Recall score of each classifier
+                                               # '8' = a convex combination of Precision and Recall, with convexifying coefficient
     weightFormula = "1"
     formulas = ["1","2","3","4","5","6","7","8","9"]      # '1' = proportion of classifiers that detected arc
                                               # '2' = proportion of ALL classifiers
@@ -55,7 +57,7 @@ def main(args):
         if arg[:7] == "weight=":
             weight = arg[7:]
             if not weight in weights:
-                print "Weight must be in range 1 to 7"
+                print "Weight must be in range 1 to 8"
                 return False        
         if arg[:8] == "formula=":
             weightFormula = arg[8:]
@@ -64,6 +66,9 @@ def main(args):
                 return False        
         if arg[:4] == "opt=":
             opt = arg[4:]
+        if arg[:13] == "convexifying=":
+            convexifying = float(arg[13:])
+            #print "Received a convexifying coefficient of", convexifying
 
     # list of classifiers - sub-directories starting with CLASSIFIER_
 #    classifiers = []                                        # initialise list of classifiers
@@ -85,7 +90,7 @@ def main(args):
     try:
         for filename in filelist:                               # for each file in the first directory
             finalClassifier = Classifier("FINAL", True)         # TLINKS and probability of relTypes across ALL classifiers goes here
-            finalClassifier.setWeightFormula(weight, weightFormula) # determine which weighting formula to use
+            finalClassifier.setWeightFormula(weight, weightFormula, convexifying) # determine which weighting formula to use
             for classifier in clList:                           # for each classifier
                 clName = Classifier(classifier, False)          # Classifier object instantiated for each classifier
                 cFilename = filename.replace(clList[0],classifier)  # file path is replaced by classifier path name

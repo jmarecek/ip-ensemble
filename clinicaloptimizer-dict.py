@@ -211,29 +211,12 @@ def main(inDict):
     model.Obj = Objective(rule=Obj_rule, sense=maximize)
     model.OnlyOneReltype = Constraint(model.Arcs, rule=OnlyOneReltype_rule) 
     model.Transitivity = Constraint(model.Connected_Arcs, model.relTypes, model.relTypes, rule=Transitivity_rule)
-#    print "Number of constraints: ", numConstraints
-    
-#    print "Optimising model"
-    # Create a model instance and optimize
-    instance = model.create()
-    results = opt.solve(instance)
-#    results = opt.solve(instance, tee=True)
-#    print results
-
-    # load the results of the optimisation into a dictionary
-    instance.load(results)
-    for xVar in instance.active_components(Var):
-        varobject = getattr(instance, xVar)
-        rDict = {}
-        relTuple = ()
-        for index in varobject:
-            relTuple += (varobject[index].value,)
-            # build the values tuple from 0..14 and
-            # add to dictionary when tuple is complete
-            if index[2] == 14:
-                rDict[(index[0], index[1])] = relTuple
-                relTuple = ()
-    #    print rDict
+    results = opt.solve(model)
+    rDict = {}
+    for (arcFrom, arcTo, index) in model.x.keys():
+        arc = (arcFrom, arcTo)
+        if not rDict.has_key( arc ): rDict[arc] = []
+        rDict[arc].append(index)
     return rDict
 
 if __name__ == "__main__":

@@ -1,12 +1,13 @@
 """
 Evaluates systems that extract temporal information from text 
+#!/usr/bin/python 
+
+# this program evaluates systems that extract temporal information from text 
 # tlink -> temporal links
 
 #foreach f (24-a-gold-tlinks/data/ABC19980108.1830.0711.tml); do
 #python evaluation-relations/code/temporal_evaluation.py $f $(echo $f | p 's/24-a-gold-tlinks/30-b-trips-relations/g')                             
 #done
-
-# DURING relations are changed to SIMULTANEOUS
 
 This code is licensed under the Apache License, Version 2.0. You may
 obtain a copy of this license in the LICENSE file in the root 

@@ -55,37 +55,6 @@ def buildResultFile(result, filename, filenum):
         soup = BeautifulSoup(open(refFile), "xml")             # open the Platinum file
         root = soup.annotations
 
-        '''
-        # let's ignore doctimerel for the time being
-        for entity in root.find_all("entity") :
-            source = entity.find("id").string
-            target = "t0"
-            #print("Source: ", source)
-            properties = entity.find("properties")
-            doctimetag = properties.find("DocTimeRel")
-            if doctimetag is not None :
-                #new_tag = properties.new_tag("DocTimeRel")
-                #new_tag.string = "OVERLAP"
-                #properties.DocTimeRel.replace_with(new_tag)
-
-                findKey = (source, target)
-                if (findKey in result.index) :
-                    doctimerel = result.loc[findKey].relation
-                    #print(doctimerel)
-                    
-                    if not isinstance(doctimerel, basestring) :
-                        doctimerel = doctimerel[0]
-                        #print(doctimerel)
-                    
-                    new_tag = soup.new_tag("DocTimeRel")
-                    new_tag.string = doctimerel
-                    properties.DocTimeRel.replace_with(new_tag)
-                else: 
-                    print("doctime key not found : ", findKey)
-                    # probably need to remove tag as well
-        '''
-
-
         for rel in soup.find_all("relation"):                  # remove all existing relations
             soup.relation.decompose() 
 

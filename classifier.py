@@ -86,6 +86,8 @@ class Classifier:
                                   # '5' = new F1 score of each classifier
                                   # '6' = new Precision score of each classifier
                                   # '7' = new Recall score of each classifier
+                                  # '8' = a convex combination of precision and recall
+  convexifying = 0.5              # a convexifying coefficient for the combination of precision and recall (weight = '8')
   weightFormula = '1'             # '1' = proportion of classifiers that detected arc
                                   # '2' = proportion of ALL classifiers
                                   # '3' = weights normalised to 1 and link excluded if below 0.5 threshold
@@ -114,14 +116,17 @@ class Classifier:
     
   addClassifier = staticmethod(addClassifier)
 
-  def setWeightFormula(weight, weightFormula):
+  def setWeightFormula(weight, weightFormula, convexifying = 0.1):
     Classifier.weight = weight
     Classifier.weightFormula = weightFormula
+    Classifier.convexifying = convexifying
+    # print "Setting weight to", weight, "with convexifying coefficient", convexifying
     return
     
   setWeightFormula = staticmethod(setWeightFormula)
 
   def getScores(classID, weight):
+      # print "Running getScores ... "
       inFile = "ClassifierScores.csv"    # open file containing scores for classifier
       try:
         if weight > '1':
@@ -132,7 +137,7 @@ class Classifier:
             folder = "Test"+classID[8:10]
           else :
             folder = ""
-          if folder <> "" :
+          if folder != "" :
             if weight == '2':
               Classifier.setWeight(classID, scores[scores.Folder==folder]['F1_A'])
             elif weight == '3':
@@ -143,8 +148,17 @@ class Classifier:
               Classifier.setWeight(classID, scores[scores.Folder==folder]['F1_B'])
             elif weight == '6':
               Classifier.setWeight(classID, scores[scores.Folder==folder]['Precision_B'])
-            else:
+            elif weight == '7':
               Classifier.setWeight(classID, scores[scores.Folder==folder]['Recall_B'])
+            elif weight == '8':
+              convex = Classifier.convexifying * scores[scores.Folder==folder]['Precision_B']
+              #print Classifier.convexifying * scores[scores.Folder==folder]['Precision_B']
+              #print (1.0 - Classifier.convexifying) * scores[scores.Folder==folder]['Recall_B']
+              convex += (1.0 - Classifier.convexifying) * scores[scores.Folder==folder]['Recall_B']
+              #print "Actual convexified weight is", convex # where the first is 0-based index of the classifier
+              Classifier.setWeight(classID, convex)
+            else:
+              print "Unknown weight"
             if (Classifier.weightFormula == '4' or Classifier.weightFormula == '5') and Classifier.badScore(Classifier.getWeight(classID)):
   #            print "Weight must be a probability between 0.5 and 1.0"
               raise TypeError("Weight must be a probability between 0.5 and 1.0")
