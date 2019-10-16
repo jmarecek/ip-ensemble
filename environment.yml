@@ -1,0 +1,15 @@
+name: ipensemble
+channels:
+ - conda-forge
+ - bioconda
+ - defaults
+
+
+dependencies:
+  - python=2.7
+  - beautifulsoup4
+  - pandas
+  - pyomo
+  - pip:
+    - matplotlib==3.1.0
+    - numpy==1.16.3
