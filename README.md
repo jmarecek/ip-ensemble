@@ -1,4 +1,4 @@
-# Integer-Programming Ensemble of Temporal-Relations Classifiers
+# Integer Programming Ensemble of Temporal Relations Classifiers
 
 The extraction and understanding of temporal events and their relations are major challenges in natural language processing. Processing text on a sentence-by-sentence or expression-by-expression basis often fails, in part due to the challenge of capturing the global consistency of the text. We present an ensemble method, which reconciles the outputs of multiple classifiers of temporal expressions across the text using integer programming. Computational experiments show that the ensemble improves upon the best individual results from two recent challenges, SemEval-2013 TempEval-3 (Temporal Annotation) and SemEval-2016 Task 12 (Clinical TempEval).
 
@@ -8,11 +8,12 @@ If you use the code, please also cite our paper:
 
       @article{Kerr2020,
         author    = {Catherine Kerr and Terri Hoare and Paula Carroll and Jakub Marecek},
-        title     = {Integer-Programming Ensemble of Temporal-Relations Classifiers},
+        title     = {Integer Programming Ensemble of Temporal Relations Classifiers},
         journal   = {Data Mining and Knowledge Discovery},
         volume    = {to appear},
         year      = {2020},
-        url       = {http://arxiv.org/abs/1412.1866},
+        doi       = {https://doi.org/10.1007/s10618-019-00671-x},
+        note       = {http://arxiv.org/abs/1412.1866},
         archivePrefix = {arXiv},
         eprint    = {1412.1866},
       }
